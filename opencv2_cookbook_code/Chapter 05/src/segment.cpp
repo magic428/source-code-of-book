@@ -25,7 +25,7 @@
 int main()
 {
 	// Read input image
-	cv::Mat image= cv::imread("../group.jpg");
+	cv::Mat image= cv::imread("../../../3241OS_images/images/group.jpg");
 	if (!image.data)
 		return 0; 
 
@@ -35,7 +35,7 @@ int main()
 
 	// Get the binary map
 	cv::Mat binary;
-	binary= cv::imread("../binary.bmp",0);
+	binary= cv::imread("../../../3241OS_images/images/binary.bmp",0);
 
     // Display the binary image
 	cv::namedWindow("Binary Image");
@@ -80,7 +80,7 @@ int main()
 	cv::imshow("Watersheds",segmenter.getWatersheds());
 
 	// Open another image
-	image= cv::imread("../tower.jpg");
+	image= cv::imread("../../../3241OS_images/images/tower.jpg");
 
 	// Identify background pixels
 	cv::Mat imageMask(image.size(),CV_8U,cv::Scalar(0));
@@ -105,7 +105,7 @@ int main()
 	cv::imshow("Watersheds of foreground object",segmenter.getWatersheds());
 
 	// Open another image
-	image= cv::imread("../tower.jpg");
+	image= cv::imread("../../../3241OS_images/images/tower.jpg");
 
 	// define bounding rectangle 
 	cv::Rect rectangle(50,70,image.cols-150,image.rows-180);
@@ -136,7 +136,7 @@ int main()
 	cv::imshow("Segmented Image",foreground);
 
 	// Open another image
-	image= cv::imread("../group.jpg");
+	image= cv::imread("../../../3241OS_images/images/group.jpg");
 
 	// define bounding rectangle 
 		cv::Rect rectangle2(10,100,380,180);

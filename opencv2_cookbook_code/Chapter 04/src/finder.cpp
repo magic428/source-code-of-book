@@ -30,7 +30,7 @@ using namespace std;
 int main()
 {
 	// Read reference image
-	cv::Mat image= cv::imread("../baboon1.jpg");
+	cv::Mat image= cv::imread("../../../3241OS_images/images/baboon1.jpg");
 	if (!image.data)
 		return 0; 
 
@@ -45,7 +45,7 @@ int main()
 	// Get the Hue histogram
 	int minSat=65;
 	ColorHistogram hc;
-	cv::MatND colorhist= hc.getHueHistogram(imageROI,minSat);
+	cv::MatND colorhist= hc.getHueHistogram(imageROI);
 
 	ObjectFinder finder;
 	finder.setHistogram(colorhist);
@@ -76,7 +76,7 @@ int main()
 	cv::imshow("Result Hue and",result);
 
 	// Second image
-	image= cv::imread("../baboon3.jpg");
+	image= cv::imread("../../../3241OS_images/images/baboon3.jpg");
 
 	// Display image
 	cv::namedWindow("Image 2");

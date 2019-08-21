@@ -26,7 +26,7 @@ int main()
 	ColorDetector cdetect;
 
 	// Read input image
-	cv::Mat image= cv::imread("boldt.jpg");
+	cv::Mat image= cv::imread("../../../3241OS_images/images/boldt.jpg");
 	if (!image.data)
 		return 0; 
 

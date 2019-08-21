@@ -25,7 +25,7 @@ using namespace std;
 int main()
 {
 	// Read input image
-	cv::Mat image= cv::imread("../group.jpg",0);
+	cv::Mat image= cv::imread("../../../3241OS_images/images/group.jpg",0);
 	if (!image.data)
 		return 0; 
 
@@ -79,11 +79,15 @@ int main()
 	cv::imshow("Stretched Histogram",h.getHistogramImage(str));
 
 	// Create an image inversion table
-	uchar lookup[256];
+	int dim(256);
+	cv::Mat lookup(1,  // 1 dimension
+		&dim,		   // 256 entries
+		CV_8U);        // uchar type
+
 	
 	for (int i=0; i<256; i++) {
 		
-		lookup[i]= 255-i;
+		lookup.at<uchar>(i)= 255-i;
 	}
 
 	// Apply lookup and display negative image

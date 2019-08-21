@@ -1,5 +1,5 @@
 /*------------------------------------------------------------------------------------------*\
-   This file contains material supporting chapter 3 of the cookbook:  
+   This file contains material supporting chapter 2 of the cookbook:  
    Computer Vision Programming using the OpenCV Library. 
    by Robert Laganiere, Packt Publishing, 2011.
 
@@ -15,13 +15,48 @@
    Copyright (C) 2010-2011 Robert Laganiere, www.laganiere.name
 \*------------------------------------------------------------------------------------------*/
 
-#include <QtGui/QApplication>
-#include "mainwindow.h"
+#include <opencv2/core/core.hpp>
+#include <opencv2/highgui/highgui.hpp>
 
-int main(int argc, char *argv[])
-{
-    QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
-    return a.exec();
+void salt(cv::Mat &image, int n) {
+
+	int i,j;
+	for (int k=0; k<n; k++) {
+
+		// rand() is the MFC random number generator
+		i= rand()%image.cols;
+		j= rand()%image.rows;
+
+
+		if (image.channels() == 1) { // gray-level image
+
+			image.at<uchar>(j,i)= 255; 
+
+		} else if (image.channels() == 3) { // color image
+
+			image.at<cv::Vec3b>(j,i)[0]= 255; 
+			image.at<cv::Vec3b>(j,i)[1]= 255; 
+			image.at<cv::Vec3b>(j,i)[2]= 255; 
+		}
+	}
 }
+
+int main()
+{
+	srand(cv::getTickCount()); // init random number generator
+
+	cv::Mat image= cv::imread("../../../3241OS_images/images/boldt.jpg",0);
+
+	salt(image,3000);
+
+	cv::namedWindow("Image");
+	cv::imshow("Image",image);
+
+	cv::imwrite("salted.bmp",image);
+
+	cv::waitKey(5000);
+
+	return 0;
+}
+
+

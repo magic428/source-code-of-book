@@ -119,7 +119,7 @@ void colorReduce4(cv::Mat &image, int div=64) {
 	  int nl= image.rows; // number of lines
 	  int nc= image.cols * image.channels(); // total number of elements per line
 	  int n= static_cast<int>(log(static_cast<double>(div))/log(2.0));
-	  int step= image.step; // effective width
+	  size_t step= image.step; // effective width
 	  // mask used to round the pixel value
 	  uchar mask= 0xFF<<n; // e.g. for div=16, mask= 0xF0
               
@@ -387,7 +387,7 @@ int main()
 
 		std::cout << k << " of " << n << std::endl; 
 
-		image1= cv::imread("../image.jpg");
+		image1= cv::imread("../../../3241OS_images/images/waves.jpg");
 	    if (!image1.data)
 		   return 0; 
 
@@ -396,73 +396,73 @@ int main()
 		colorReduce0(image1);
 		t[0]+= cv::getTickCount()-tinit;
 
-		image1= cv::imread("../image.jpg");
+		image1= cv::imread("../../../3241OS_images/images/waves.jpg");
 		// using .ptr and * ++ 
 	    tinit= cv::getTickCount();
 		colorReduce1(image1);
 		t[1]+= cv::getTickCount()-tinit;
 
-		image1= cv::imread("../image.jpg");
+		image1= cv::imread("../../../3241OS_images/images/waves.jpg");
 		// using .ptr and * ++ and modulo
 	    tinit= cv::getTickCount();
 		colorReduce2(image1);
 		t[2]+= cv::getTickCount()-tinit;
 
-		image1= cv::imread("../image.jpg");
+		image1= cv::imread("../../../3241OS_images/images/waves.jpg");
 		// using .ptr and * ++ and bitwise
 	    tinit= cv::getTickCount();
 		colorReduce3(image1);
 		t[3]+= cv::getTickCount()-tinit;
 
-		image1= cv::imread("../image.jpg");
+		image1= cv::imread("../../../3241OS_images/images/waves.jpg");
 		// using direct pointer arithmetic
 	    tinit= cv::getTickCount();
 		colorReduce4(image1);
 		t[4]+= cv::getTickCount()-tinit;
 
-		image1= cv::imread("../image.jpg");
+		image1= cv::imread("../../../3241OS_images/images/waves.jpg");
 		// using .ptr and * ++ and bitwise with image.cols * image.channels()
 	    tinit= cv::getTickCount();
 		colorReduce5(image1);
 		t[5]+= cv::getTickCount()-tinit;
 
-		image1= cv::imread("../image.jpg");
+		image1= cv::imread("../../../3241OS_images/images/waves.jpg");
 		// using .ptr and * ++ and bitwise (continuous)
 	    tinit= cv::getTickCount();
 		colorReduce6(image1);
 		t[6]+= cv::getTickCount()-tinit;
 
-		image1= cv::imread("../image.jpg");
+		image1= cv::imread("../../../3241OS_images/images/waves.jpg");
 		// using .ptr and * ++ and bitwise (continuous+channels)
 	    tinit= cv::getTickCount();
 		colorReduce7(image1);
 		t[7]+= cv::getTickCount()-tinit;
 
-		image1= cv::imread("../image.jpg");
+		image1= cv::imread("../../../3241OS_images/images/waves.jpg");
 		// using Mat_ iterator
 	    tinit= cv::getTickCount();
 		colorReduce8(image1);
 		t[8]+= cv::getTickCount()-tinit;
 
-		image1= cv::imread("../image.jpg");
+		image1= cv::imread("../../../3241OS_images/images/waves.jpg");
 		// using Mat_ iterator and bitwise
 	    tinit= cv::getTickCount();
 		colorReduce9(image1);
 		t[9]+= cv::getTickCount()-tinit;
 
-		image1= cv::imread("../image.jpg");
+		image1= cv::imread("../../../3241OS_images/images/waves.jpg");
 		// using Mat_ iterator 
 	    tinit= cv::getTickCount();
 		colorReduce10(image1);
 		t[10]+= cv::getTickCount()-tinit;
 
-		image1= cv::imread("../image.jpg");
+		image1= cv::imread("../../../3241OS_images/images/waves.jpg");
 		// using at 
 	    tinit= cv::getTickCount();
 		colorReduce11(image1);
 		t[11]+= cv::getTickCount()-tinit;
 		
-		image1= cv::imread("../image.jpg");
+		image1= cv::imread("../../../3241OS_images/images/waves.jpg");
 		// using input/output images 
 	    tinit= cv::getTickCount();
 		cv::Mat result;
@@ -471,7 +471,7 @@ int main()
 
 		image2= result;
 		
-		image1= cv::imread("../image.jpg");
+		image1= cv::imread("../../../3241OS_images/images/waves.jpg");
 		// using input/output images 
 	    tinit= cv::getTickCount();
 		colorReduce13(image1);

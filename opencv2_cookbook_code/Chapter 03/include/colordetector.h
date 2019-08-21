@@ -19,6 +19,8 @@
 #define COLORDETECT
 
 #include <opencv2/core/core.hpp>
+#include <opencv2/imgproc/imgproc.hpp>
+#include <opencv2/highgui/highgui.hpp>
 
 class ColorDetector {
 
@@ -32,9 +34,6 @@ class ColorDetector {
 
 	  // image containing resulting binary map
 	  cv::Mat result;
-
-	  // image containing color converted image
-	  cv::Mat converted;
 
 	  // inline private member function
 	  // Computes the distance from target color.
@@ -75,27 +74,15 @@ class ColorDetector {
 	  // Sets the color to be detected
 	  void setTargetColor(unsigned char red, unsigned char green, unsigned char blue) {
 
-		  cv::Mat tmp(1,1,CV_8UC3);
-          tmp.at<cv::Vec3b>(0,0)[0]= blue;
-          tmp.at<cv::Vec3b>(0,0)[1]= green;
-          tmp.at<cv::Vec3b>(0,0)[2]= red;
-
-  	      // Converting the target to Lab color space 
-	      cv::cvtColor(tmp, tmp, CV_BGR2Lab);
-
-          target= tmp.at<cv::Vec3b>(0,0);
+		  target[2]= red;
+		  target[1]= green;
+		  target[0]= blue;
 	  }
 
 	  // Sets the color to be detected
 	  void setTargetColor(cv::Vec3b color) {
 
-		  cv::Mat tmp(1,1,CV_8UC3);
-          tmp.at<cv::Vec3b>(0,0)= color;
-
-  	      // Converting the target to Lab color space 
-	      cv::cvtColor(tmp, tmp, CV_BGR2Lab);
-
-          target= tmp.at<cv::Vec3b>(0,0);
+		  target= color;
 	  }
 
 	  // Gets the color to be detected

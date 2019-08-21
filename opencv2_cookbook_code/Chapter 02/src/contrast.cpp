@@ -52,7 +52,7 @@ void sharpen2(const cv::Mat &image, cv::Mat &result) {
 
 	result.create(image.size(), image.type()); // allocate if necessary
 
-	int step= image.step1();
+	size_t step= image.step1();
 	const uchar* previous= image.data;		// ptr to previous row
 	const uchar* current=  image.data+step; // ptr to current row
 	const uchar* next= image.data+2*step;   // ptr to next row
@@ -110,7 +110,7 @@ void sharpen2D(const cv::Mat &image, cv::Mat &result) {
 
 int main()
 {
-	cv::Mat image= cv::imread("boldt.jpg",0);
+	cv::Mat image= cv::imread("../../../3241OS_images/images/boldt.jpg",0);
 	if (!image.data)
 		return 0; 
 
@@ -125,7 +125,7 @@ int main()
 	cv::namedWindow("Image");
 	cv::imshow("Image",result);
 
-	image= cv::imread("boldt.jpg",0);
+	image= cv::imread("../../../3241OS_images/images/boldt.jpg",0);
 	time= static_cast<double>(cv::getTickCount());
 	sharpen3(image, result);
 	time= (static_cast<double>(cv::getTickCount())-time)/cv::getTickFrequency();
@@ -134,7 +134,7 @@ int main()
 	cv::namedWindow("Image 3");
 	cv::imshow("Image 3",result);
 
-	image= cv::imread("boldt.jpg",0);
+	image= cv::imread("../../../3241OS_images/images/boldt.jpg",0);
 	time= static_cast<double>(cv::getTickCount());
 	sharpen2D(image, result);
 	time= (static_cast<double>(cv::getTickCount())-time)/cv::getTickFrequency();

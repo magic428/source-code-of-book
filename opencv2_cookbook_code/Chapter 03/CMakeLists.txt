@@ -1,0 +1,22 @@
+SET(PROJECT_NAME "Chapter 03")
+PROJECT(${PROJECT_NAME})
+
+# 设置 lib 和 bin 的路径 
+IF(MSVC)
+    # SET( CMAKE_ARCHIVE_OUTPUT_DIRECTORY_RELEASE ${OPENCV2_COOKBOOK_BINARY_DIR}/lib/{PROJECT_NAME} CACHE PATH "Output directory for libraries" )
+    SET( CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${OPENCV2_COOKBOOK_BINARY_DIR}/bin/${PROJECT_NAME} )
+    # ADD_DEFINITIONS(/arch:SSE /arch:SSE2) # /arch:SSE and /arch:SSE2 are only available when you compile for the x86 platform.
+ELSEIF(CMAKE_COMPILER_IS_GNUCC) 
+    # SET( CMAKE_ARCHIVE_OUTPUT_DIRECTORY   ${OPENCV2_COOKBOOK_BINARY_DIR}/lib/{PROJECT_NAME} CACHE PATH "Output directory for libraries" )
+    SET( CMAKE_RUNTIME_OUTPUT_DIRECTORY   ${OPENCV2_COOKBOOK_BINARY_DIR}/bin/${PROJECT_NAME} )
+ENDIF()
+
+
+file( GLOB Chapter03_source 
+      "${PROJECT_SOURCE_DIR}/src/*.cpp"
+    )
+
+INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/include)
+
+ADD_EXECUTABLE(colorDetection ${Chapter03_source})
+TARGET_LINK_LIBRARIES(colorDetection ${OpenCV_LIBS}) 
